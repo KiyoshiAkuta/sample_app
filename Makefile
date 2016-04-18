@@ -1,4 +1,4 @@
-PID = log/unicorn/unicorn.pid
+PID = log/unicorn.pid
 
 all:
 	    @echo Usage: (start|stop|restart|graceful)
