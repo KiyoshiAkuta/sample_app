@@ -1,6 +1,6 @@
 worker_processes 1
 
-listen '/home/akuta/work_rails/sample_app/tmp/sockets/unicorn.sock'
+listen '/home/akuta/workspace/sample_app/tmp/sockets/unicorn.sock'
 
 pid File.expand_path('../../log/unicorn.pid', __FILE__)
 
