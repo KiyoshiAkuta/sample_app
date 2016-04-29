@@ -4,6 +4,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
   end
 
   test "unsuccessful edit" do
@@ -19,6 +20,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   test "successful edit with friendly following" do
     get edit_user_path(@user)
+    assert_equal session[:forwarding_url], "http://www.example.com"+edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_path(@user)
     name = "Foo Bar"
@@ -32,8 +34,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name, @user.name
     assert_equal email, @user.email
+    delete logout_path
+    log_in_as(@user)
+    assert_redirected_to user_path(@user)
   end
-
+  
   # test "the truth" do
   #   assert true
   # end
